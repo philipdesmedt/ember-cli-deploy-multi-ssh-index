@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-deploy-multi-ssh-index",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "An ember-cli-deploy addon that allows you to upload the Ember.js index.html file to multiple SSH hosts.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -41,7 +41,8 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli-deploy-plugin"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"
