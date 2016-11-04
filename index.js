@@ -91,7 +91,7 @@ module.exports = {
       fetchRevisions: function(context) {
         var filePattern    = this.readConfig('filePattern');
         var username       = this.readConfig('username');
-        var hoss           = this.readConfig('host');
+        var hosts          = this.readConfig('hosts');
         var port           = this.readConfig('port');
         var remoteDir      = this.readConfig('remoteDir');
         var passphrase     = this.readConfig('passphrase');
@@ -101,7 +101,7 @@ module.exports = {
         var options = {
           filePattern: filePattern,
           username: username,
-          host: host,
+          host: hosts[0],
           port: port,
           remoteDir: remoteDir,
           passphrase: passphrase,
