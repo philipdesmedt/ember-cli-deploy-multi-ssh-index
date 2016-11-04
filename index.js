@@ -35,7 +35,7 @@ module.exports = {
         var distDir        = this.readConfig('distDir');
         var revisionKey    = this.readConfig('revisionKey');
         var username       = this.readConfig('username');
-        var host           = this.readConfig('host');
+        var hosts          = this.readConfig('hosts');
         var port           = this.readConfig('port');
         var remoteDir      = this.readConfig('remoteDir');
         var privateKeyFile = this.readConfig('privateKeyFile');
@@ -49,7 +49,7 @@ module.exports = {
           filePath: filePath,
           revisionKey: revisionKey,
           username: username,
-          host: host,
+          hosts: hosts,
           port: port,
           remoteDir: remoteDir,
           passphrase: passphrase,
@@ -65,7 +65,7 @@ module.exports = {
         var filePattern    = this.readConfig('filePattern');
         var revisionKey    = this.readConfig('revisionKey');
         var username       = this.readConfig('username');
-        var host           = this.readConfig('host');
+        var hosts          = this.readConfig('hosts');
         var port           = this.readConfig('port');
         var remoteDir      = this.readConfig('remoteDir');
         var passphrase     = this.readConfig('passphrase');
@@ -76,7 +76,7 @@ module.exports = {
           filePattern: filePattern,
           revisionKey: revisionKey,
           username: username,
-          host: host,
+          hosts: hosts,
           port: port,
           remoteDir: remoteDir,
           passphrase: passphrase,
@@ -91,7 +91,7 @@ module.exports = {
       fetchRevisions: function(context) {
         var filePattern    = this.readConfig('filePattern');
         var username       = this.readConfig('username');
-        var host           = this.readConfig('host');
+        var hoss           = this.readConfig('host');
         var port           = this.readConfig('port');
         var remoteDir      = this.readConfig('remoteDir');
         var passphrase     = this.readConfig('passphrase');
