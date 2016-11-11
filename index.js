@@ -30,6 +30,7 @@ module.exports = {
       requiredConfig: ['username', 'hosts', 'port', 'remoteDir'],
 
       upload: function(context) {
+        var self           = this;
         var allowOverwrite = this.readConfig('allowOverwrite');
         var filePattern    = this.readConfig('filePattern');
         var distDir        = this.readConfig('distDir');
@@ -43,25 +44,28 @@ module.exports = {
         var agent          = this.readConfig('agent');
         var filePath       = path.join(distDir, filePattern);
 
-        var options = {
-          allowOverwrite: allowOverwrite,
-          filePattern: filePattern,
-          filePath: filePath,
-          revisionKey: revisionKey,
-          username: username,
-          hosts: hosts,
-          port: port,
-          remoteDir: remoteDir,
-          passphrase: passphrase,
-          agent: agent,
-          privateKeyFile: privateKeyFile
-        };
+        hosts.forEach(function (host) {
+          var options = {
+            allowOverwrite: allowOverwrite,
+            filePattern: filePattern,
+            filePath: filePath,
+            revisionKey: revisionKey,
+            username: username,
+            hosts: [host],
+            port: port,
+            remoteDir: remoteDir,
+            passphrase: passphrase,
+            agent: agent,
+            privateKeyFile: privateKeyFile
+          };
 
-        var ssh = new Ssh({ plugin: this });
-        return ssh.upload(options);
+          var ssh = new Ssh({ plugin: self });
+          ssh.upload(options);
+        });
       },
 
       activate: function(context) {
+        var self           = this;
         var filePattern    = this.readConfig('filePattern');
         var revisionKey    = this.readConfig('revisionKey');
         var username       = this.readConfig('username');
@@ -71,24 +75,29 @@ module.exports = {
         var passphrase     = this.readConfig('passphrase');
         var agent          = this.readConfig('agent');
         var privateKeyFile = this.readConfig('privateKeyFile');
+        var promisesArray  = [];
 
-        var options = {
-          filePattern: filePattern,
-          revisionKey: revisionKey,
-          username: username,
-          hosts: hosts,
-          port: port,
-          remoteDir: remoteDir,
-          passphrase: passphrase,
-          agent: agent,
-          privateKeyFile: privateKeyFile
-        };
+        hosts.forEach(function (host) {
+          var options = {
+            filePattern: filePattern,
+            revisionKey: revisionKey,
+            username: username,
+            host: host,
+            port: port,
+            remoteDir: remoteDir,
+            passphrase: passphrase,
+            agent: agent,
+            privateKeyFile: privateKeyFile
+          };
 
-        var ssh = new Ssh({ plugin: this });
-        return ssh.activate(options);
+          var ssh = new Ssh({ plugin: self });
+          promisesArray.push(ssh.activate(options));
+        });
+        return Promise.all(promisesArray);
       },
 
       fetchRevisions: function(context) {
+        var self           = this;
         var filePattern    = this.readConfig('filePattern');
         var username       = this.readConfig('username');
         var hosts          = this.readConfig('hosts');
@@ -97,24 +106,29 @@ module.exports = {
         var passphrase     = this.readConfig('passphrase');
         var agent          = this.readConfig('agent');
         var privateKeyFile = this.readConfig('privateKeyFile');
+        var promisesArray  = [];
 
-        var options = {
-          filePattern: filePattern,
-          username: username,
-          host: hosts[0],
-          port: port,
-          remoteDir: remoteDir,
-          passphrase: passphrase,
-          agent: agent,
-          privateKeyFile: privateKeyFile
-        };
+        hosts.forEach(function (host) {
+          var options = {
+            filePattern: filePattern,
+            username: username,
+            host: host,
+            port: port,
+            remoteDir: remoteDir,
+            passphrase: passphrase,
+            agent: agent,
+            privateKeyFile: privateKeyFile
+          };
 
-        var ssh = new Ssh({ plugin: this });
-        return ssh.fetchRevisions(options).then(function(revisions) {
-          if (revisions && revisions.length) {
-            context.revisions = revisions;
-          }
+          var ssh = new Ssh({ plugin: self });
+          var promise = ssh.fetchRevisions(options).then(function(revisions) {
+            if (revisions && revisions.length) {
+              context.revisions = revisions;
+            }
+          });
+          promisesArray.push(promise);
         });
+        return Promise.all(promisesArray);
       }
     });
 
