@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-multi-ssh-index",
-  "version": "1.0",
+  "version": "0.0.1",
   "description": "An ember-cli-deploy addon that allows you to upload the Ember.js index.html file to multiple SSH hosts.",
   "directories": {
     "doc": "doc",
