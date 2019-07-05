@@ -1,28 +1,52 @@
+<<<<<<< HEAD
 # Ember-cli-deploy-multi-ssh-index
 
 An ember-cli-deploy addon that allows you to upload the Ember.js index.html file to multiple SSH hosts.
 Most of the code was taken from https://github.com/green-arrow/ember-cli-deploy-ssh-index and extended to support multiple hosts.
+=======
+my-addon
+==============================================================================
 
-## Installation
+[Short description of the addon.]
+>>>>>>> 2bb05ec... message
 
+
+<<<<<<< HEAD
 * `git clone <repository-url>` this repository
 * `cd ember-cli-deploy-multi-ssh-index`
 * `npm install`
 * `bower install`
+=======
+Compatibility
+------------------------------------------------------------------------------
+>>>>>>> 2bb05ec... message
 
-## Running
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-## Running Tests
+Installation
+------------------------------------------------------------------------------
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```
+ember install my-addon
+```
 
-## Building
 
-* `ember build`
+Usage
+------------------------------------------------------------------------------
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+[Longer description of how to use the addon in apps.]
+
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
