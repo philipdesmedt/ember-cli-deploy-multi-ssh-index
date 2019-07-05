@@ -4,7 +4,6 @@ var DeployPluginBase = require('ember-cli-deploy-plugin');
 var Ssh              = require('./lib/ssh');
 
 module.exports = {
-<<<<<<< HEAD
   name: 'ember-cli-deploy-multi-ssh-index',
 
   createDeployPlugin: function(options) {
@@ -134,7 +133,4 @@ module.exports = {
 
     return new DeployPlugin();
   }
-=======
-  name: require('./package').name
->>>>>>> 2bb05ec... message
 };
